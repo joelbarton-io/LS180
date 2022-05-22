@@ -60,3 +60,36 @@ SELECT item, menu_price, round(prep_time/60.0 * 13.0,2) as labor,
     FROM menu_items
 ORDER BY profit DESC;
 
+-- @block
+TABLE films;
+
+-- @block
+SELECT * FROM films WHERE length(title) < 12;
+
+-- @block
+ALTER TABLE films
+ADD COLUMN director varchar(255),
+ADD COLUMN duration int;
+
+-- @block
+UPDATE films
+SET director = 'Francis Ford Coppola', duration = 113
+WHERE title = 'The Conversation';
+
+-- @block
+INSERT INTO films (title, year, genre, director, duration)
+  VALUES
+    ('1984', 1956, 'scifi', 'Michael Anderson', 90),
+    ('Tinker Tailor Soldier Spy', 2011, 'espionage', 'Tomas Alfredson', 127),
+    ('The Birdcage', 1996, 'comedy', 'Mike Nichols', 118);
+
+-- @block
+SELECT title, (SELECT date_part('year', (SELECT current_timestamp)) - year) as age
+FROM films
+ORDER BY age ASC;
+
+-- @block
+SELECT title, duration FROM films WHERE duration > 120 ORDER BY duration DESC;
+
+-- @block
+SELECT title FROM films ORDER BY duration DESC LIMIT 1;
