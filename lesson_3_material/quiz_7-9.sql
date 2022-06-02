@@ -52,3 +52,4 @@ SELECT library_users.name AS "User Name", books.name AS "Books Checked Out"
 FROM library_users
 LEFT JOIN checkouts ON library_users.id = checkouts.user_id
 FULL JOIN books ON checkouts.book_id = books.id; -- FULL
+
